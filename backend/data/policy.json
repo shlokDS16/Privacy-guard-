@@ -1,0 +1,7 @@
+{
+  "policy_id": "default",
+  "k_min": 5,
+  "l_min": 2,
+  "enable_drop_predicate": true,
+  "updated_at": "2026-01-23T13:47:28.679848+00:00"
+}
