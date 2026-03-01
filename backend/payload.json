@@ -1,0 +1,1 @@
+﻿{"sql":"SELECT AVG(chol) FROM patient_records WHERE age = 63 AND sex = 1 AND cp = 4","dataset_id":"uci_heart_v1","mode":"jit"}

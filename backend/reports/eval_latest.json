@@ -1,0 +1,214 @@
+{
+  "status": "ok",
+  "dataset_id": "uci_heart_v1",
+  "k_min": 5,
+  "l_min": 2,
+  "enable_drop_predicate": true,
+  "query_count": 60,
+  "notes": {
+    "privacy_violation_definition": "k_est < k_min OR l_est < l_min after any rewrite; NoControls may execute despite violation (baseline).",
+    "utility_definition": "1 - |final_value - raw_value|/|raw_value| averaged over executable queries (demo proxy).",
+    "info_loss_definition": "0.6 if age exact is generalized to age_band + 0.4 if cp exact is generalized to cp_group (demo proxy).",
+    "rewrite_ablation_definition": "Table T2 reports dominant rewrite type per rewritten query: age_band (R2), cp_group (R3'), drop_predicate (R4_DROP_*), combo (>=2), other."
+  },
+  "table_T1": [
+    {
+      "method": "No Controls",
+      "method_id": "no_controls",
+      "total_queries": 60,
+      "executed": 60,
+      "rewritten": 0,
+      "blocked": 0,
+      "privacy_violations": 48,
+      "sqr": 100.0,
+      "bqr": 0.0,
+      "rsr": null,
+      "mean_il": 0.0,
+      "mean_utility": 0.983,
+      "asr": 0.0,
+      "avg_latency_ms": 19.0,
+      "p95_latency_ms": 32.5
+    },
+    {
+      "method": "Global Recoding",
+      "method_id": "global_recoding",
+      "total_queries": 60,
+      "executed": 60,
+      "rewritten": 54,
+      "blocked": 0,
+      "privacy_violations": 47,
+      "sqr": 100.0,
+      "bqr": 0.0,
+      "rsr": null,
+      "mean_il": 0.9,
+      "mean_utility": 0.138,
+      "asr": 16.7,
+      "avg_latency_ms": 17.7,
+      "p95_latency_ms": 25.0
+    },
+    {
+      "method": "JIT Lattice",
+      "method_id": "jit",
+      "total_queries": 60,
+      "executed": 60,
+      "rewritten": 47,
+      "blocked": 0,
+      "privacy_violations": 40,
+      "sqr": 100.0,
+      "bqr": 0.0,
+      "rsr": 97.9,
+      "mean_il": 0.913,
+      "mean_utility": 0.255,
+      "asr": 16.7,
+      "avg_latency_ms": 18.4,
+      "p95_latency_ms": 28.6
+    },
+    {
+      "method": "JIT + Heatmap",
+      "method_id": "jit_heatmap",
+      "total_queries": 60,
+      "executed": 60,
+      "rewritten": 43,
+      "blocked": 0,
+      "privacy_violations": 5,
+      "sqr": 100.0,
+      "bqr": 0.0,
+      "rsr": 89.6,
+      "mean_il": 0.405,
+      "mean_utility": 0.627,
+      "asr": 89.6,
+      "avg_latency_ms": 54.2,
+      "p95_latency_ms": 108.5
+    }
+  ],
+  "table_T2": [
+    {
+      "method": "No Controls",
+      "method_id": "no_controls",
+      "rewrites": 0,
+      "age_band_count": 0,
+      "age_band_pct": 0.0,
+      "cp_group_count": 0,
+      "cp_group_pct": 0.0,
+      "drop_predicate_count": 0,
+      "drop_predicate_pct": 0.0,
+      "combo_count": 0,
+      "combo_pct": 0.0,
+      "other_count": 0,
+      "other_pct": 0.0
+    },
+    {
+      "method": "Global Recoding",
+      "method_id": "global_recoding",
+      "rewrites": 54,
+      "age_band_count": 0,
+      "age_band_pct": 0.0,
+      "cp_group_count": 0,
+      "cp_group_pct": 0.0,
+      "drop_predicate_count": 0,
+      "drop_predicate_pct": 0.0,
+      "combo_count": 54,
+      "combo_pct": 100.0,
+      "other_count": 0,
+      "other_pct": 0.0
+    },
+    {
+      "method": "JIT Lattice",
+      "method_id": "jit",
+      "rewrites": 47,
+      "age_band_count": 0,
+      "age_band_pct": 0.0,
+      "cp_group_count": 0,
+      "cp_group_pct": 0.0,
+      "drop_predicate_count": 0,
+      "drop_predicate_pct": 0.0,
+      "combo_count": 47,
+      "combo_pct": 100.0,
+      "other_count": 0,
+      "other_pct": 0.0
+    },
+    {
+      "method": "JIT + Heatmap",
+      "method_id": "jit_heatmap",
+      "rewrites": 43,
+      "age_band_count": 38,
+      "age_band_pct": 88.4,
+      "cp_group_count": 0,
+      "cp_group_pct": 0.0,
+      "drop_predicate_count": 5,
+      "drop_predicate_pct": 11.6,
+      "combo_count": 0,
+      "combo_pct": 0.0,
+      "other_count": 0,
+      "other_pct": 0.0
+    }
+  ],
+  "charts": {
+    "outcomes": [
+      {
+        "method": "No Controls",
+        "executed": 60,
+        "rewritten": 0,
+        "blocked": 0
+      },
+      {
+        "method": "Global Recoding",
+        "executed": 60,
+        "rewritten": 54,
+        "blocked": 0
+      },
+      {
+        "method": "JIT Lattice",
+        "executed": 60,
+        "rewritten": 47,
+        "blocked": 0
+      },
+      {
+        "method": "JIT + Heatmap",
+        "executed": 60,
+        "rewritten": 43,
+        "blocked": 0
+      }
+    ],
+    "kpi": [
+      {
+        "method": "No Controls",
+        "SQR": 100.0,
+        "BQR": 0.0,
+        "ASR": 0.0,
+        "Utility": 98.3,
+        "InfoLoss": 0.0,
+        "P95(ms)": 32.5
+      },
+      {
+        "method": "Global Recoding",
+        "SQR": 100.0,
+        "BQR": 0.0,
+        "ASR": 16.7,
+        "Utility": 13.8,
+        "InfoLoss": 0.9,
+        "P95(ms)": 25.0
+      },
+      {
+        "method": "JIT Lattice",
+        "SQR": 100.0,
+        "BQR": 0.0,
+        "ASR": 16.7,
+        "Utility": 25.5,
+        "InfoLoss": 0.913,
+        "P95(ms)": 28.6
+      },
+      {
+        "method": "JIT + Heatmap",
+        "SQR": 100.0,
+        "BQR": 0.0,
+        "ASR": 89.6,
+        "Utility": 62.7,
+        "InfoLoss": 0.405,
+        "P95(ms)": 108.5
+      }
+    ]
+  },
+  "generated_at": "2026-03-01T16:19:09.770944+00:00",
+  "report_path": "C:\\Users\\shlok\\Downloads\\privacyguard_optionA_starter_v0.7_CLEAN\\backend\\reports\\eval_latest.json"
+}
